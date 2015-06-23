@@ -1,0 +1,11 @@
+*
+!/.vimrc
+!/.vim/
+!/.vim/bundle/
+!/.vim/bundle/Vundle.vim/
+!/.vim/bundle/Vundle.vim/*
+!/.zshrc
+!/.antigen/
+!/.antigen/antigen.zsh
+!/.tmux.conf
+!/.gitignore
