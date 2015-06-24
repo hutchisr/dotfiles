@@ -19,8 +19,15 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 # Load the theme.
 antigen theme babun/babun babun-core/plugins/oh-my-zsh/src/babun.zsh-theme
 
+antigen bundle sharat87/zsh-vim-mode zsh-vim-mode.plugin.zsh
+
 # Tell antigen that you're done.
 antigen apply
+
+bindkey "^?" backward-delete-char
+bindkey "^W" backward-kill-word 
+bindkey "^H" backward-delete-char      # Control-h also deletes the previous char
+bindkey "^U" backward-kill-line
 
 DISABLE_AUTO_TITLE=true
 unsetopt AUTO_CD
