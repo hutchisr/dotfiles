@@ -11,6 +11,8 @@ antigen bundle yum
 #antigen bundle lein
 #antigen bundle command-not-found
 
+antigen bundle zsh-users/zsh-history-substring-search
+
 antigen bundle chriskempson/base16-shell --loc=base16-tomorrow.dark.sh
 
 # Syntax highlighting bundle.

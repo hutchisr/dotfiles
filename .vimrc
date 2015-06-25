@@ -144,4 +144,5 @@ let g:tmuxline_separators = {
     \ 'right_alt' : '<',
     \ 'space' : ' '}
 
-let g:dbext_default_profile_PG = 'type=PGSQL:user=dearborn:host=dearborn.cwg5xavic6ev.us-west-2.rds.amazonaws.com:dbname=dearborn'
+let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_python_flake8_args='--ignore=E501'
