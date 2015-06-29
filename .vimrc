@@ -28,28 +28,29 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/syntastic'
 Plugin 'pangloss/vim-javascript'
-"Plugin 'jelera/vim-javascript-syntax'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'kien/ctrlp.vim'
-"Plugin 'dyng/ctrlsf.vim'
 Plugin 'moll/vim-bbye'
 Plugin 'tpope/vim-fugitive'
 Plugin 'bling/vim-airline'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'moll/vim-node'
 Plugin 'flazz/vim-colorschemes'
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'marijnh/tern_for_vim'
 Plugin 'GutenYe/json5.vim'
-Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'plasticboy/vim-markdown'
-Plugin 'edkolev/tmuxline.vim'
 Plugin 'chriskempson/base16-vim'
 Plugin 'othree/yajs.vim'
 Plugin 'mileszs/ack.vim'
-"Plugin 'vim-scripts/SyntaxComplete'
 Plugin 'JazzCore/ctrlp-cmatcher'
-Plugin 'vim-scripts/dbext.vim'
+if $TMUX > 0
+  Plugin 'christoomey/vim-tmux-navigator'
+  Plugin 'edkolev/tmuxline.vim'
+endif
+" Plugins that don't work on win/cygwin
+if has('unix') && !has('win32unix')
+  Plugin 'Valloric/YouCompleteMe'
+endif
 
 call vundle#end()
 
@@ -57,10 +58,12 @@ syntax on
 
 filetype plugin indent on
 
-set t_Co=256
-let base16colorspace=256  " Access colors present in 256 colorspace
-set background=dark
-colorscheme base16-default
+if $TERM == 'xterm-256color'
+  set t_Co=256
+  let base16colorspace=256  " Access colors present in 256 colorspace
+  set background=dark
+  colorscheme base16-default
+endif
 
 let loaded_matchparen = 1
 
