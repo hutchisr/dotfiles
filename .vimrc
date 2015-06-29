@@ -43,10 +43,8 @@ Plugin 'chriskempson/base16-vim'
 Plugin 'othree/yajs.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'JazzCore/ctrlp-cmatcher'
-if $TMUX > 0
-  Plugin 'christoomey/vim-tmux-navigator'
-  Plugin 'edkolev/tmuxline.vim'
-endif
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'edkolev/tmuxline.vim'
 " Plugins that don't work on win/cygwin
 if has('unix') && !has('win32unix')
   Plugin 'Valloric/YouCompleteMe'
