@@ -13,10 +13,10 @@ antigen bundle yum
 
 antigen bundle zsh-users/zsh-history-substring-search
 
-antigen bundle chriskempson/base16-shell --loc=base16-tomorrow.dark.sh
+antigen bundle chriskempson/base16-shell base16-tomorrow.dark.sh
 
 # Syntax highlighting bundle.
-antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-syntax-highlighting zsh-syntax-highlighting.zsh
 
 # Load the theme.
 #antigen theme babun/babun babun-core/plugins/oh-my-zsh/src/babun.zsh-theme
