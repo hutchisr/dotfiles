@@ -26,11 +26,11 @@ antigen bundle sharat87/zsh-vim-mode zsh-vim-mode.plugin.zsh
 # Tell antigen that you're done.
 antigen apply
 
-PROMPT='%{$fg[blue]%}{ %{$fg[magenta]%}%n@%m%{$fg[blue]%} } \
+PROMPT='%{$fg[blue]%}{ %~ } \
 %{$fg[green]%}$(  git rev-parse --abbrev-ref HEAD 2> /dev/null || echo ""  )%{$reset_color%} \
 %{$fg[red]%}%(!.#.»)%{$reset_color%} '
 
-RPROMPT='%{$fg[blue]%}%~ %(0?.%{$fg[green]%}⃝⃝⃝○.%{$fg[red]%}×)%{$reset_color%}${return_code}'
+RPROMPT='%{$fg[blue]%}%{$fg[magenta]%}%n@%m%{$fg[blue]%} %(0?.%{$fg[green]%}⃝⃝⃝○.%{$fg[red]%}×)%{$reset_color%}${return_code}'
 
 bindkey "^?" backward-delete-char
 bindkey "^W" backward-kill-word 
