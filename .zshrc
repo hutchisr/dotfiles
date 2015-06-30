@@ -13,7 +13,10 @@ antigen bundle yum
 
 antigen bundle zsh-users/zsh-history-substring-search
 
-antigen bundle chriskempson/base16-shell base16-tomorrow.dark.sh
+if [[ $TERM = *256color ]]
+then
+  antigen bundle chriskempson/base16-shell base16-tomorrow.dark.sh
+fi
 
 # Syntax highlighting bundle.
 antigen bundle zsh-users/zsh-syntax-highlighting zsh-syntax-highlighting.zsh
