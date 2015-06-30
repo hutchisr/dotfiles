@@ -31,7 +31,6 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'kien/ctrlp.vim'
 Plugin 'moll/vim-bbye'
-Plugin 'tpope/vim-fugitive'
 Plugin 'bling/vim-airline'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'moll/vim-node'
@@ -43,12 +42,13 @@ Plugin 'chriskempson/base16-vim'
 Plugin 'othree/yajs.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'JazzCore/ctrlp-cmatcher'
-if $TMUX > 0
+if !empty($TMUX)
   Plugin 'christoomey/vim-tmux-navigator'
   Plugin 'edkolev/tmuxline.vim'
 endif
 " Plugins that don't work on win/cygwin
 if has('unix') && !has('win32unix')
+  Plugin 'tpope/vim-fugitive'
   Plugin 'Valloric/YouCompleteMe'
 endif
 
@@ -58,7 +58,7 @@ syntax on
 
 filetype plugin indent on
 
-if $TERM == 'xterm-256color'
+if $TERM == 'xterm-256color' || $TERM == 'screen-256color'
   set t_Co=256
   let base16colorspace=256  " Access colors present in 256 colorspace
   set background=dark
