@@ -24,8 +24,6 @@ antigen bundle zsh-users/zsh-syntax-highlighting zsh-syntax-highlighting.zsh
 # Load the theme.
 #antigen theme babun/babun babun-core/plugins/oh-my-zsh/src/babun.zsh-theme
 
-antigen bundle sharat87/zsh-vim-mode zsh-vim-mode.plugin.zsh
-
 # Tell antigen that you're done.
 antigen apply
 
@@ -35,8 +33,12 @@ function zle-line-init zle-keymap-select {
  zle reset-prompt
 }
 
+function zle-line-finish {
+  VIMODE="$fg[red]"
+}
+
+zle -N zle-line-finish
 zle -N zle-keymap-select
-zle -N zle-line-init
 
 PROMPT='%{$fg[blue]%}{ %~ } \
 %{$fg[green]%}$( git rev-parse --abbrev-ref HEAD 2> /dev/null || echo "" )%{$reset_color%} \
@@ -44,11 +46,15 @@ PROMPT='%{$fg[blue]%}{ %~ } \
 
 RPROMPT='%{$fg[blue]%}%{$fg[magenta]%}%n@%m%{$fg[blue]%} %(?.%{$fg[green]%}⃝⃝⃝○.%{$fg[red]%}×)%{$reset_color%}${return_code}'
 
+bindkey -v
 bindkey "^?" backward-delete-char
 bindkey "^W" backward-kill-word 
 bindkey "^H" backward-delete-char      # Control-h also deletes the previous char
 bindkey "^U" backward-kill-line
+bindkey  "^[[H"   beginning-of-line
+bindkey  "^[[F"   end-of-line
 
+KEYTIMEOUT=1
 DISABLE_AUTO_TITLE=true
 unsetopt AUTO_CD
 
