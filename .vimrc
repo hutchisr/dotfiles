@@ -42,6 +42,7 @@ Plugin 'chriskempson/base16-vim'
 Plugin 'othree/yajs.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'JazzCore/ctrlp-cmatcher'
+Plugin 'chase/vim-ansible-yaml'
 if !empty($TMUX)
   Plugin 'christoomey/vim-tmux-navigator'
   Plugin 'edkolev/tmuxline.vim'
@@ -73,7 +74,8 @@ set noshowmode
 
 autocmd FileType javascript setlocal omnifunc=tern#Complete
 autocmd bufenter *.jade setlocal filetype=jade
-autocmd bufenter *.hjson setlocal filetype=yaml
+autocmd bufenter *.hjson setlocal filetype=ansible
+autocmd bufenter *.yml setlocal filetype=ansible
 
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
