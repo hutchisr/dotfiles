@@ -1,3 +1,8 @@
+if [ -d /etc/profile.d ]
+then
+  source /etc/profile.d/*
+fi
+
 source ~/.antigen/antigen.zsh
 
 # Load the oh-my-zsh's library.
@@ -46,17 +51,19 @@ PROMPT='%{$fg[blue]%}{ %~ } \
 
 RPROMPT='%{$fg[blue]%}%{$fg[magenta]%}%n@%m%{$fg[blue]%} %(?.%{$fg[green]%}⃝⃝⃝○.%{$fg[red]%}×)%{$reset_color%}${return_code}'
 
-bindkey -v
-bindkey "^?" backward-delete-char
-bindkey "^W" backward-kill-word 
-bindkey "^H" backward-delete-char      # Control-h also deletes the previous char
-bindkey "^U" backward-kill-line
+#bindkey -v
+#bindkey "^?" backward-delete-char
+#bindkey "^W" backward-kill-word 
+#bindkey "^H" backward-delete-char      # Control-h also deletes the previous char
+#bindkey "^U" backward-kill-line
 bindkey  "^[[H"   beginning-of-line
 bindkey  "^[[F"   end-of-line
 
 KEYTIMEOUT=1
 DISABLE_AUTO_TITLE=true
 unsetopt AUTO_CD
+
+export EDITOR=vim
 
 # loop over extra files
 if test -d ~/.zshrc.d/

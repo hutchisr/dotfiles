@@ -43,10 +43,8 @@ Plugin 'othree/yajs.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'JazzCore/ctrlp-cmatcher'
 Plugin 'chase/vim-ansible-yaml'
-if !empty($TMUX)
   Plugin 'christoomey/vim-tmux-navigator'
   Plugin 'edkolev/tmuxline.vim'
-endif
 " Plugins that don't work on win/cygwin
 if has('unix') && !has('win32unix')
   Plugin 'tpope/vim-fugitive'
