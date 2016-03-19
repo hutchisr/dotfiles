@@ -1,4 +1,34 @@
-autocmd!
+call plug#begin('~/.vim/plugged')
+if has('clientserver')
+  Plug 'idbrii/AsyncCommand'
+endif
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/syntastic'
+Plug 'pangloss/vim-javascript'
+Plug 'jelera/vim-javascript-syntax'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'kien/ctrlp.vim'
+Plug 'dyng/ctrlsf.vim'
+Plug 'moll/vim-bbye'
+Plug 'tpope/vim-fugitive'
+Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
+Plug 'digitaltoad/vim-jade'
+Plug 'moll/vim-node'
+Plug 'flazz/vim-colorschemes'
+Plug 'marijnh/tern_for_vim'
+Plug 'GutenYe/json5.vim'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'plasticboy/vim-markdown'
+Plug 'edkolev/tmuxline.vim'
+Plug 'chriskempson/base16-vim'
+if has("unix") && !has("win32unix")
+  Plug 'nixprime/cpsm', { 'do': './install.sh' }
+  Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+endif
+call plug#end()
+
+filetype plugin indent on
 set number
 
 set expandtab
@@ -17,63 +47,21 @@ set nohlsearch
 
 let mapleader="\\"
 set laststatus=2
-
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-
-Plugin 'gmarik/Vundle.vim'
-
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/syntastic'
-Plugin 'pangloss/vim-javascript'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'kien/ctrlp.vim'
-Plugin 'moll/vim-bbye'
-Plugin 'bling/vim-airline'
-Plugin 'digitaltoad/vim-jade'
-Plugin 'moll/vim-node'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'marijnh/tern_for_vim'
-Plugin 'GutenYe/json5.vim'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'chriskempson/base16-vim'
-Plugin 'othree/yajs.vim'
-Plugin 'mileszs/ack.vim'
-Plugin 'JazzCore/ctrlp-cmatcher'
-Plugin 'chase/vim-ansible-yaml'
-  Plugin 'christoomey/vim-tmux-navigator'
-  Plugin 'edkolev/tmuxline.vim'
-" Plugins that don't work on win/cygwin
-if has('unix') && !has('win32unix')
-  Plugin 'tpope/vim-fugitive'
-  Plugin 'Valloric/YouCompleteMe'
-endif
-
-call vundle#end()
-
 syntax on
 
-filetype plugin indent on
 
-if $TERM == 'xterm-256color' || $TERM == 'screen-256color'
-  set t_Co=256
-  let base16colorspace=256  " Access colors present in 256 colorspace
+if &term=~'xterm' || &term=~'screen'
+  "set t_Co=256
+  "let base16colorspace=256  " Access colors present in 256 colorspace
   set background=dark
   colorscheme base16-default
 endif
-
-let loaded_matchparen = 1
-
-"AirlineTheme base16
 
 set noshowmode
 
 autocmd FileType javascript setlocal omnifunc=tern#Complete
 autocmd bufenter *.jade setlocal filetype=jade
-autocmd bufenter *.hjson setlocal filetype=ansible
-autocmd bufenter *.yml setlocal filetype=ansible
+autocmd bufenter *.hjson setlocal filetype=yaml
 
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
@@ -97,7 +85,7 @@ nnoremap <silent> <leader>n :NERDTreeToggle<CR>
 nnoremap <silent> <leader>l :lcd %:p:h<CR>:pwd<CR>
 nnoremap <silent> <leader>q :Bdelete<CR>
 nnoremap , @q
-nnoremap <F5> :!%:p<CR>
+nnoremap <F8> :!%:p<CR>
 "nnoremap <silent> <C-h> :wincmd h<CR>
 "nnoremap <silent> <C-j> :wincmd j<CR>
 "nnoremap <silent> <C-k> :wincmd k<CR>
@@ -107,38 +95,11 @@ nnoremap <silent> <leader>,u :PluginInstall!<CR>
 nnoremap <silent> <leader>,c :PluginClean<CR>
 nnoremap <silent> <leader>gc :Gcommit<CR>
 nnoremap <silent> <leader>gs :Gstatus<CR>
-nnoremap <silent> <leader>pse :!psql $DB_URL -e -f %<CR>
 
-":vmap pg :w !psql $DB_URL -e
-
-" ctrlp custom ignore
-let g:ctrlp_custuum_ignore = {
-  \ 'dir': '\v[\/]node_modules$/'
-\ }
-let g:ctrlp_user_command = 'ack -f 
-      \ --ignore-dir=.git
-      \ --ignore-dir=node_modules --ignore-dir=bower_components
-      \ %s'
-"let g:ctrlp_user_command = 'ag --nogroup --nocolor --column
-      "\ --ignore .git --ignore node_modules --ignore bower_components
-      "\-g "" %s'
-"let g:ctrlp_match_window_bottom = 0
-let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
-" CtrlP auto cache clearing.
-" ----------------------------------------------------------------------------
-function! SetupCtrlP()
-  if exists("g:loaded_ctrlp") && g:loaded_ctrlp
-    augroup CtrlPExtension
-      autocmd!
-      autocmd FocusGained  * CtrlPClearCache
-      autocmd BufWritePost * CtrlPClearCache
-    augroup END
-  endif
-endfunction
-if has("autocmd")
-  autocmd VimEnter * :call SetupCtrlP()
+if has("unix") && !has("win32unix")
+  let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
 endif
-" tmuxline setup
+
 let g:tmuxline_powerline_separators = 0
 let g:tmuxline_separators = {
     \ 'left' : '',
@@ -146,7 +107,3 @@ let g:tmuxline_separators = {
     \ 'right' : '',
     \ 'right_alt' : '<',
     \ 'space' : ' '}
-
-let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_python_flake8_args='--ignore=E501'
-
