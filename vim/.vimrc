@@ -13,7 +13,7 @@ Plug 'scrooloose/nerdcommenter'
 "Plug 'maralla/validator.vim'
 Plug 'w0rp/ale'
 Plug 'moll/vim-bbye'
-Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
