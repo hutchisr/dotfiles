@@ -7,6 +7,7 @@ paths=(
   "$GOPATH/bin"
   "$HOME/.poetry/bin"
   "$HOME/.yarn/bin"
+  "$HOME/.pyenv/bin"
   "/Applications/VMware Fusion.app/Contents/Library/VMware OVF Tool/"
   "/usr/local/opt/openssl@1.1/bin"
   "/usr/local/opt/libarchive/bin"
@@ -20,9 +21,9 @@ do
   [ -d "$path" ] && PATH="$path:$PATH"
 done
 
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-eval "$(rbenv init -)"
+hash pyenv 2>/dev/null && eval "$(pyenv init -)"
+hash pyenv 2>/dev/null && eval "$(pyenv virtualenv-init -)"
+hash rbenv 2>/dev/null && eval "$(rbenv init -)"
 
 export GPG_TTY="$(tty)"
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
