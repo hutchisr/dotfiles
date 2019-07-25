@@ -15,5 +15,6 @@ fi
 
 alias ls="ls -G"
 alias ll="ls -Gl"
+alias grep="grep --color"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
