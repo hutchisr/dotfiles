@@ -1,4 +1,4 @@
-# shellcheck shell=bash
+# shellcheck shell=bash disable=SC1090,SC2155
 
 export GOPATH="$HOME/go"
 
@@ -12,23 +12,22 @@ paths=(
   "/usr/local/opt/libarchive/bin"
   "/usr/local/opt/python/libexec/bin"
   "/usr/local/opt/curl/bin"
+  "/usr/local/opt/coreutils/libexec/gnubin"
 )
 
 for path in "${paths[@]}"
 do
-  [[ -d "$path" ]] && PATH="$path:$PATH"
+  [ -d "$path" ] && PATH="$path:$PATH"
 done
-
-export PATH
-
-# shellcheck source=.bashrc
-[ "${BASH-no}" != "no" ] && [ -r ~/.bashrc ] && . ~/.bashrc
 
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 eval "$(rbenv init -)"
-#export NVM_DIR="$HOME/.nvm"
-#. "$(brew --prefix nvm)/nvm.sh"
+
 export GPG_TTY="$(tty)"
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
+
+[ -r ~/.profile ] && source ~/.profile
+[ -r ~/.bash_profile.local ] && source ~/.bash_profile.local
+[ -r ~/.bashrc ] && source ~/.bashrc
