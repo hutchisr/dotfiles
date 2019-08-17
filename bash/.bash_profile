@@ -25,10 +25,17 @@ hash pyenv 2>/dev/null && eval "$(pyenv init -)"
 hash pyenv 2>/dev/null && eval "$(pyenv virtualenv-init -)"
 hash rbenv 2>/dev/null && eval "$(rbenv init -)"
 
-export GPG_TTY="$(tty)"
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-gpgconf --launch gpg-agent
+# Only override agent if not in ssh session!
+if [ -z "$SSH_CLIENT" ] && [ -z "$SSH_TTY" ]; then
+  export GPG_TTY="$(tty)"
+  export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+  gpgconf --launch gpg-agent
+fi
 
 [ -r ~/.profile ] && source ~/.profile
 [ -r ~/.bash_profile.local ] && source ~/.bash_profile.local
 [ -r ~/.bashrc ] && source ~/.bashrc
+
+# iTerm2 Integration (needs to be last for some reason)
+[ -r "${HOME}/.iterm2_shell_integration.bash" ] && source "${HOME}/.iterm2_shell_integration.bash"
+
