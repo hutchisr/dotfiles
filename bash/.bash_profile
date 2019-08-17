@@ -18,8 +18,10 @@ paths=(
 
 for path in "${paths[@]}"
 do
-  [ -d "$path" ] && PATH="$path:$PATH"
+  [ -d "$path" ] && [[ ":$PATH:" != *":$path:"* ]] && PATH="$path:$PATH"
 done
+
+unset path paths
 
 hash pyenv 2>/dev/null && eval "$(pyenv init -)"
 hash pyenv 2>/dev/null && eval "$(pyenv virtualenv-init -)"
@@ -32,9 +34,9 @@ if [ -z "$SSH_CLIENT" ] && [ -z "$SSH_TTY" ]; then
   gpgconf --launch gpg-agent
 fi
 
-[ -r ~/.profile ] && source ~/.profile
-[ -r ~/.bash_profile.local ] && source ~/.bash_profile.local
-[ -r ~/.bashrc ] && source ~/.bashrc
+[ -r "$HOME/.profile" ] && source "$HOME/.profile"
+[ -r "$HOME/.bash_profile.local" ] && source "$HOME/.bash_profile.local"
+[ -r "$HOME/.bashrc" ] && source "$HOME/.bashrc"
 
 # iTerm2 Integration (needs to be last for some reason)
 [ -r "${HOME}/.iterm2_shell_integration.bash" ] && source "${HOME}/.iterm2_shell_integration.bash"
