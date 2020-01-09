@@ -1,5 +1,4 @@
 # shellcheck shell=bash disable=SC1090,SC2155
-
 export GOPATH="$HOME/go"
 
 paths=(
@@ -11,20 +10,19 @@ paths=(
   "/Applications/VMware Fusion.app/Contents/Library/VMware OVF Tool/"
   "/usr/local/opt/openssl@1.1/bin"
   "/usr/local/opt/libarchive/bin"
-  "/usr/local/opt/python/libexec/bin"
   "/usr/local/opt/curl/bin"
   "/usr/local/opt/coreutils/libexec/gnubin"
 )
 
 for path in "${paths[@]}"
 do
-  [ -d "$path" ] && [[ ":$PATH:" != *":$path:"* ]] && PATH="$path:$PATH"
+  [ -d "$path" ] && PATH="$path:$PATH"
 done
 
 unset path paths
 
 hash pyenv 2>/dev/null && eval "$(pyenv init -)"
-hash pyenv 2>/dev/null && eval "$(pyenv virtualenv-init -)"
+hash pyenv-virtualenv-init 2>/dev/null && eval "$(pyenv virtualenv-init -)"
 hash rbenv 2>/dev/null && eval "$(rbenv init -)"
 
 # Only override agent if not in ssh session!
