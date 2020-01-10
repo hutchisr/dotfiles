@@ -7,6 +7,7 @@ paths=(
   "$HOME/.poetry/bin"
   "$HOME/.yarn/bin"
   "$HOME/.pyenv/bin"
+  "$HOME/Library/Python/"*/bin
   "/Applications/VMware Fusion.app/Contents/Library/VMware OVF Tool/"
   "/usr/local/opt/openssl@1.1/bin"
   "/usr/local/opt/libarchive/bin"
@@ -23,6 +24,7 @@ unset path paths
 
 hash pyenv 2>/dev/null && eval "$(pyenv init -)"
 hash pyenv-virtualenv-init 2>/dev/null && eval "$(pyenv virtualenv-init -)"
+hash pipx 2>/dev/null && eval "$(register-python-argcomplete pipx)"
 hash rbenv 2>/dev/null && eval "$(rbenv init -)"
 
 # Only override agent if not in ssh session!
@@ -39,3 +41,6 @@ fi
 # iTerm2 Integration (needs to be last for some reason)
 [ -r "${HOME}/.iterm2_shell_integration.bash" ] && source "${HOME}/.iterm2_shell_integration.bash"
 
+
+# Created by `userpath` on 2020-01-09 23:21:05
+export PATH="$PATH:/Users/rhutchison/.local/bin"
