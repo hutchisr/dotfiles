@@ -40,7 +40,3 @@ fi
 
 # iTerm2 Integration (needs to be last for some reason)
 [ -r "${HOME}/.iterm2_shell_integration.bash" ] && source "${HOME}/.iterm2_shell_integration.bash"
-
-
-# Created by `userpath` on 2020-01-09 23:21:05
-export PATH="$PATH:/Users/rhutchison/.local/bin"

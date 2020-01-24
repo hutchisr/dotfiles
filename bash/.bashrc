@@ -7,9 +7,7 @@ if [ -f "/usr/local/opt/bash-git-prompt/share/gitprompt.sh" ]; then
   __GIT_PROMPT_DIR="/usr/local/opt/bash-git-prompt/share"
   : "${GIT_PROMPT_THEME:=Single_line}"
   source "/usr/local/opt/bash-git-prompt/share/gitprompt.sh"
-fi
-
-if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
+elif [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
   __GIT_PROMPT_DIR="$HOME/.bash-git-prompt"
   : "${GIT_PROMPT_THEME:=Single_line}"
   source "$HOME/.bash-git-prompt/gitprompt.sh"
