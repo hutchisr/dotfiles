@@ -7,6 +7,7 @@ paths=(
   "$HOME/.poetry/bin"
   "$HOME/.yarn/bin"
   "$HOME/.pyenv/bin"
+  "$HOME/.cargo/bin"
   "$HOME/Library/Python/"*/bin
   "/Applications/VMware Fusion.app/Contents/Library/VMware OVF Tool/"
   "/usr/local/opt/openssl@1.1/bin"
