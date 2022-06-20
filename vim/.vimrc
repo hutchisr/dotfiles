@@ -6,6 +6,8 @@ endif
 if has('clientserver')
   Plug 'idbrii/AsyncCommand'
 endif
+Plug 'Shougo/ddc.vim'
+Plug 'vim-denops/denops.vim'
 "Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 "Plug 'scrooloose/syntastic'
@@ -21,16 +23,10 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'edkolev/tmuxline.vim'
 Plug 'rakr/vim-one'
 Plug 'joshdick/onedark.vim'
-Plug 'mhartington/nvim-typescript'
 Plug 'pangloss/vim-javascript'
 Plug 'elixir-editors/vim-elixir'
 Plug 'slashmili/alchemist.vim'
 Plug 'cespare/vim-toml'
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'zchee/deoplete-jedi'
-  Plug 'mhartington/nvim-typescript'
-endif
 call plug#end()
 
 if (has("nvim"))
@@ -117,11 +113,6 @@ let g:tmuxline_separators = {
       \ 'right_alt' : '<',
       \ 'space' : ' '}
 
-if has('nvim')
-  " deoplete tab-complete
-  let g:deoplete#enable_smart_case = 1
-  let g:deoplete#enable_at_startup = 1
-endif
 aug vimrc
   au!
   au BufWritePost .vimrc source %
